@@ -1,12 +1,23 @@
 import { useNavigate } from "react-router-dom";
 import logo from "../../assets/img/logo.png";
+import { useAuth } from "../../hooks/useAuth";
+import { useForm } from "react-hook-form";
+import { RegisterData } from "../register/validator";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { schema } from "./validator";
 
 export const Login = () => {
   const navigate = useNavigate();
 
+  const { signIn } = useAuth();
+  const { register, handleSubmit } = useForm<RegisterData>({
+    resolver: zodResolver(schema),
+  });
+
   const handleRegister = () => {
     navigate("/register");
   };
+
   return (
     <main
       className={`text-slate-700 bg-gradient-to-br from-blue-950 via-blue-900 to-blue-950 h-screen`}
@@ -16,7 +27,7 @@ export const Login = () => {
         <h1 className="text-[17px] font-semibold">| Contact Flow - Login |</h1>
         <div className="w-[90%]">
           <form
-            action="submit"
+            onSubmit={handleSubmit(signIn)}
             className="border-gray-300 rounded-[10px] mt-5 p-3 pb-5 border-2 flex flex-col gap-2"
           >
             <label htmlFor="email" className="text-slate-700 ">
@@ -27,6 +38,7 @@ export const Login = () => {
               id="email"
               placeholder="Digite seu e-mail"
               className="border-2 placeholder-gray-400 pl-2 h-10 w-full rounded-[5px] focus:outline-blue-600 transition-all duration-1000"
+              {...register('email')}
             />
             <label htmlFor="password" className="text-slate-700 ">
               Senha:
@@ -36,6 +48,7 @@ export const Login = () => {
               id="password"
               placeholder="Digite sua senha"
               className="border-2 placeholder-gray-400 pl-2 h-10 w-full rounded-[5px] focus:outline-blue-600 transition-all duration-1000"
+              {...register('password')}
             />
             <button
               type="submit"

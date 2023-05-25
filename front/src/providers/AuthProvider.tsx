@@ -1,4 +1,4 @@
-import { ReactNode, createContext, useEffect, useState } from "react";
+import { ReactNode, createContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { LoginData } from "../pages/login/validator";
 import { api } from "../services/api";
@@ -20,6 +20,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
 
+
   const signIn = async (data: LoginData) => {
     try {
       const response = await api.post("/login", data);
@@ -27,7 +28,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
       const { token } = response.data;
 
       api.defaults.headers.common.authorization = `Bearer ${token}`;
-      localStorage.setItem("your-todolist:token", token);
+      localStorage.setItem("@TOKEN", token);
 
       navigate("dashboard");
     } catch (error) {
