@@ -22,14 +22,13 @@ export const RegisterProvider = ({ children }: UserProviderProps) => {
 
   
     const signUp = async (data: RegisterData) => {
-      console.log(data)
       try {
         const response = await api.post("/register", data);
   
+        setLoading(false)
       } catch (error) {
         console.error(error);
       }
-      setLoading(false)
     };
   
     return (
