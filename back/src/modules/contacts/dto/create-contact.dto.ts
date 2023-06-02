@@ -1,21 +1,21 @@
+/* eslint-disable prettier/prettier */
 import { ApiProperty } from '@nestjs/swagger';
-import { hashSync } from 'bcryptjs';
-import { Transform } from 'class-transformer';
+
 import {
   IsDate,
   IsEmail,
   IsNotEmpty,
   IsOptional,
   IsString,
-  MinLength,
 } from 'class-validator';
 
-export class CreateUserDto {
+export class CreateContactDto {
   @ApiProperty({
-    description: 'Nome do usuário',
+    description: 'Nome do contato',
     type: String,
     default: 'Marcos Melo',
   })
+  
   @IsString()
   @IsNotEmpty()
   name: string;
@@ -25,15 +25,6 @@ export class CreateUserDto {
   @IsNotEmpty()
   email: string;
 
-  @ApiProperty()
-  @IsString()
-  @IsNotEmpty()
-  @MinLength(6)
-  @Transform(({ value }: { value: string }) => hashSync(value, 10), {
-    groups: ['transform'],
-  })
-  password: string;
-
   @IsString()
   @IsNotEmpty()
   telephone: string;
@@ -41,4 +32,5 @@ export class CreateUserDto {
   @IsDate()
   @IsOptional()
   createdAt: Date;
+  
 }

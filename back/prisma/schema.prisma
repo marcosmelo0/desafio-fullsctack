@@ -17,7 +17,7 @@ model User {
   password  String
   telephone String
   createdAt DateTime  @default(now())
-  contacts   Contact[]
+  contacts  Contact[]
 
   @@map("users")
 }
@@ -30,4 +30,6 @@ model Contact {
   createdAt DateTime @default(now())
   user      User     @relation(fields: [userId], references: [id])
   userId    String
+
+  @@map("contacts")
 }
