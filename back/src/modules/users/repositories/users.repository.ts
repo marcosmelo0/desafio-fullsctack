@@ -11,3 +11,4 @@ export abstract class IUsersRepository {
   abstract update(id: string, data: UpdateUserDto): Promise<User> | User;
   abstract delete(id: string): Promise<void> | void;
 }
+  

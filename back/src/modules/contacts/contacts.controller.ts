@@ -28,6 +28,13 @@ export class ContactController {
     return this.contactService.create(createContactDto, req.user.id);
   }
 
+  @Get('')
+  @ApiBearerAuth()
+  @UseGuards(JwtAuthGuard)
+  findAll(@Request() req) {
+    return this.contactService.findAll(req.user.id);
+  }
+
   @Get(':id')
   @ApiBearerAuth()
   @UseGuards(JwtAuthGuard)

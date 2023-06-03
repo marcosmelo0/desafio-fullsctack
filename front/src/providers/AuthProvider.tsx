@@ -10,6 +10,7 @@ interface AuthProviderProps {
 interface AuthContextValues {
   signIn: (data: LoginData) => void;
   loading: boolean;
+  user: null;
 }
 
 export const AuthContext = createContext<AuthContextValues>(
@@ -19,12 +20,13 @@ export const AuthContext = createContext<AuthContextValues>(
 export const AuthProvider = ({ children }: AuthProviderProps) => {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
+  const [user, setUser] = useState(null)
 
 
   const signIn = async (data: LoginData) => {
     try {
       const response = await api.post("/login", data);
-
+      setUser(response.data.user)
       const { token } = response.data;
 
       api.defaults.headers.common.authorization = `Bearer ${token}`;
@@ -37,7 +39,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   };
 
   return (
-    <AuthContext.Provider value={{ signIn, loading }}>
+    <AuthContext.Provider value={{ signIn, loading, user }}>
       {children}
     </AuthContext.Provider>
   );

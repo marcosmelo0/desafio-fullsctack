@@ -49,4 +49,12 @@ export class ContactPrismaRepository implements IContactsRepository {
   async findOne(userId: string): Promise<Contact> {
     return;
   }
+  async findAll(userId: string): Promise<Contact[]> {
+    const contacts = await this.prisma.contact.findMany({
+      where: {
+        userId: userId
+      }
+    })
+    return contacts;
+  }
 }

@@ -23,6 +23,12 @@ export class ContactService {
     return user;
   }
 
+  async findAll(userId: string) {
+    const contacts = await this.contactsRepository.findAll(userId);
+    return contacts;
+  }
+
+
   async findOne( userId: string): Promise<Contact | undefined> {
     const user = await this.contactsRepository.findOne(userId);
     return user;
