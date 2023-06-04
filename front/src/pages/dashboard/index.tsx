@@ -3,10 +3,11 @@ import logo from "../../assets/img/logo.png";
 import { FormContact, NoContact } from "../../components/forms/contact";
 import { useState, useContext } from "react";
 import { ContactContext } from "../../providers/ContactProvider";
+import { Contacts } from "../../components/cards/contact";
 
 export const DashboardPage = () => {
   const [loading, setLoading] = useState(false);
-  const {contacts} = useContext(ContactContext)
+  const { contacts } = useContext(ContactContext);
 
   const navigate = useNavigate();
 
@@ -34,15 +35,32 @@ export const DashboardPage = () => {
           </button>
         </div>
         {!loading ? (
-          <NoContact />
+          contacts.length == 0 ? (
+            <NoContact />
+          ) : (
+            <>
+              <ul>
+                {contacts.map((contact) => (
+                  <Contacts key={contact.id} contact={contact} />
+                ))}
+              </ul>
+            </>
+          )
         ) : (
           <>
             <div className="flex w-[88.5vw] ml-5 justify-end items-center text-center pt-5">
-              <span onClick={toggleLoading} className="font-black absolute bottom-[74vh] cursor-pointer w-10 h-10 pt-1 rounded-[999px] bg-blue-700 hover:bg-blue-800 text-red-500 text-xl ml-[78vw]">
+              <span
+                onClick={toggleLoading}
+                className="font-black absolute bottom-[74vh] cursor-pointer w-10 h-10 pt-1 rounded-[999px] bg-blue-700 hover:bg-blue-800 text-red-500 text-xl ml-[78vw]"
+              >
                 X
               </span>
             </div>
-            <FormContact toggleLoading={toggleLoading} loading={loading} setLoading={setLoading}/>
+            <FormContact
+              toggleLoading={toggleLoading}
+              loading={loading}
+              setLoading={setLoading}
+            />
           </>
         )}
       </main>

@@ -15,8 +15,7 @@ export const FormContact = (loading: any, setloading: any) => {
     mode: "onChange",
     resolver: zodResolver(contactSchema),
   });
- 
- 
+  
   return (
     <div className="flex justify-center">
       <form onSubmit={handleSubmit(contactCreate)} className="flex justify-center flex-col gap-2 w-[85vw] border-gray-300 rounded-[10px] mt-5 p-3 pb-5 border-2">
@@ -47,7 +46,7 @@ export const FormContact = (loading: any, setloading: any) => {
         <p className="text-center mt-5">
           Este contato está um passo de torna-se seguro ;)
         </p>
-        <button className="h-10 mt-5 border-2 rounded-[999px] p-1 pl-2 pr-2 bg-blue-700 hover:bg-blue-800 text-white">
+        <button type="submit" className="h-10 mt-5 border-2 rounded-[999px] p-1 pl-2 pr-2 bg-blue-700 hover:bg-blue-800 text-white">
           Salvar contato
         </button>
       </form>
