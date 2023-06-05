@@ -2,6 +2,8 @@ import {  ReactNode, createContext, useState } from "react";
 import { RegisterData } from "../pages/register/validator";
 import { useNavigate } from "react-router-dom";
 import { api } from "../services/api";
+import toast from "react-hot-toast";
+
 
 interface UserProviderProps {
     children: ReactNode;
@@ -26,8 +28,13 @@ export const RegisterProvider = ({ children }: UserProviderProps) => {
         const response = await api.post("/users/register", data);
   
         setLoading(false)
+        toast.success("Conta criada com sucesso!", {
+          duration: 5000,
+        })
       } catch (error) {
-        console.error(error);
+        toast.error("Ops, algo errado! Verifique seus dados", {
+          duration: 5000,
+        })
       }
     };
   
