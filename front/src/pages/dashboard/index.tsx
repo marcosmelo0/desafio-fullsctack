@@ -4,6 +4,7 @@ import { FormContact, NoContact } from "../../components/forms/contact";
 import { useState, useContext } from "react";
 import { ContactContext } from "../../providers/ContactProvider";
 import { Contacts } from "../../components/cards/contact";
+import { ToastContainer } from "react-toastify";
 
 export const DashboardPage = () => {
   const [loading, setLoading] = useState(false);
@@ -63,6 +64,18 @@ export const DashboardPage = () => {
             />
           </>
         )}
+         <ToastContainer
+              position="top-right"
+              autoClose={5000}
+              hideProgressBar={false}
+              newestOnTop={false}
+              closeOnClick
+              rtl={false}
+              pauseOnFocusLoss
+              draggable
+              pauseOnHover
+              theme="light"
+            />
       </main>
     </>
   );

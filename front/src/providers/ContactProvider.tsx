@@ -2,6 +2,7 @@ import {  ReactNode, createContext, useContext, useEffect, useState } from "reac
 import { useNavigate } from "react-router-dom";
 import { api } from "../services/api";
 import { ContactData } from "../components/forms/contact/validator";
+import toast from "react-hot-toast";
 
 interface ContactProviderProps {
     children: ReactNode;
@@ -48,10 +49,14 @@ export const ContactProvider = ({ children }: ContactProviderProps) => {
       
         setTimeout(() => {
           window.location.reload()
-        }, 1000);
-         
+        }, 2000);
+        toast.success("Contato cadastrado com sucesso!", {
+          duration: 5000,
+        })
       } catch (error) {
-        console.error(error);
+        toast.error("Ops! Contato já cadastrado", {
+          duration: 5000,
+        })
       }
     };
   
