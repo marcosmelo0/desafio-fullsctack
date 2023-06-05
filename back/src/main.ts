@@ -12,6 +12,9 @@ async function bootstrap() {
     .setTitle('Contact Flow')
     .setDescription(' Jamais fique sem seus contatos! ')
     .setVersion('1.0')
+    .addTag('users')
+    .addBearerAuth()
+    .addTag('contacts')
     .addBearerAuth()
     .build();
 
