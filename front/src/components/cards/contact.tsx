@@ -19,17 +19,17 @@ export const Contacts = ({ contact }: CardProps) => {
           </span>
           <span>{contact.name}</span>
           <div className="flex gap-2 justify-end w-[100vw] items-center">
-            <p className="text-xl">
+            <p className="text-xl cursor-pointer">
               <AiOutlineEdit />
             </p>
-            <p className="text-xl">
+            <p className="text-xl cursor-pointer">
               <AiOutlineDelete />
             </p>
           </div>
         </div>
         <div className="flex gap-2 items-center pl-3 w-[100vw] overflow-hidden max-w-max">
             <TfiEmail />
-          <p className="text-sm whitespace-nowrap overflow-scroll flex-shrink-0">
+          <p className="text-sm whitespace-nowrap">
             {contact.email}
           </p>
         </div>
