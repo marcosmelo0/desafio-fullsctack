@@ -1,6 +1,6 @@
 <div align="center">
     <h1>
-    Contact Verse
+    Contact Flow
     </h1>
     <p>A Contact Flow é uma aplicação de simulação de agenda desenvolvida em Nestjs e Reactjs.</p>
 </div>
