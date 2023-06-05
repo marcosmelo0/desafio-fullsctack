@@ -23,7 +23,7 @@ export const RegisterProvider = ({ children }: UserProviderProps) => {
   
     const signUp = async (data: RegisterData) => {
       try {
-        const response = await api.post("/register", data);
+        const response = await api.post("/users/register", data);
   
         setLoading(false)
       } catch (error) {

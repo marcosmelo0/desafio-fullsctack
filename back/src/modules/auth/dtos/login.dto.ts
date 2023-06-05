@@ -1,13 +1,13 @@
 /* eslint-disable prettier/prettier */
-/* import { ApiProperty } from '@nestjs/swagger'; */
+import { ApiProperty } from '@nestjs/swagger';
 import { IsEmail, IsString } from 'class-validator';
 
 export class LoginDTO {
-/*   @ApiProperty() */
+  @ApiProperty()
   @IsEmail()
   email: string;
 
-/*   @ApiProperty() */
+  @ApiProperty()
   @IsString()
   password: string;
 }
